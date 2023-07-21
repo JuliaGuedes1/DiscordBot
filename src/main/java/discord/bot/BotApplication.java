@@ -13,7 +13,7 @@ public class BotApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(BotApplication.class, args);
 
-		JDABuilder builder = JDABuilder.createDefault("MTEzMTczMDg3MDk0NDk0MDA5Mg.GCdhIk.4Ek9OdCmtY-UWE15aSSjfeHCBYfAx0BM9OwOWw");
+		JDABuilder builder = JDABuilder.createDefault("");
 
 		// Disable parts of the cache
 		builder.disableCache(CacheFlag.MEMBER_OVERRIDES, CacheFlag.VOICE_STATE);
