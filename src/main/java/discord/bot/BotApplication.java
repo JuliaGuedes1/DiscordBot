@@ -1,5 +1,9 @@
 package discord.bot;
 
+import discord.bot.listener.MessageListener;
+import net.dv8tion.jda.api.JDABuilder;
+import net.dv8tion.jda.api.entities.Activity;
+import net.dv8tion.jda.api.utils.cache.CacheFlag;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -8,7 +12,21 @@ public class BotApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(BotApplication.class, args);
-		System.out.println("first commit");
+
+		JDABuilder builder = JDABuilder.createDefault("MTEzMTczMDg3MDk0NDk0MDA5Mg.GCdhIk.4Ek9OdCmtY-UWE15aSSjfeHCBYfAx0BM9OwOWw");
+
+		// Disable parts of the cache
+		builder.disableCache(CacheFlag.MEMBER_OVERRIDES, CacheFlag.VOICE_STATE);
+		// Enable the bulk delete event
+		builder.setBulkDeleteSplittingEnabled(false);
+		// Set activity (like "playing Something")
+		builder.setActivity(Activity.listening("cutokn"));
+
+		MessageListener messageListener = new MessageListener();
+		builder.addEventListeners(messageListener);
+
+		builder.build();
+
 	}
 
 }
